@@ -28,7 +28,12 @@ public class UserController {
         if(user != null){
             mv.addObject("user", user);
 //            mv.addObject("message","登录成功！");
-            mv.setViewName("redirect:/pages/index.html");
+            switch (user.getUserType()){
+                case 1:mv.setViewName("redirect:/pages/index_admin.html");break;
+                case 2:mv.setViewName("redirect:/pages/index_teacher.html");break;
+                case 3:mv.setViewName("redirect:/pages/index_student.html");break;
+            }
+            mv.setViewName("redirect:/pages/index_admin.html");
         }else {
 
             mv.addObject("message","用户名或密码错误！");
@@ -38,17 +43,19 @@ public class UserController {
         return mv;
     }
 
-    @RequestMapping("/register")
-    @ResponseBody
-    public String register(Model model, String  username, String password){
-        User user = userService.isUser(username, password);
 
-        if(user != null){
-            model.addAttribute("user",user);
-            return "redirect:index.html";
-        }
-        return "用户名或密码错误！";
-    }
+
+//    @RequestMapping("/register")
+//    @ResponseBody
+//    public String register(Model model, String  username, String password){
+//        User user = userService.isUser(username, password);
+//
+//        if(user != null){
+//            model.addAttribute("user",user);
+//            return "redirect:index_admin.html";
+//        }
+//        return "用户名或密码错误！";
+//    }
 
 
     @RequestMapping("/")
