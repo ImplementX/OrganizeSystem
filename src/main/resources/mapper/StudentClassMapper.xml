@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjrac.organization.dao.StudentClassMapper">
+  <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.StudentClass">
+    <id column="student_class_id" jdbcType="INTEGER" property="studentClassId" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_student_class
+    where student_class_id = #{studentClassId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tjrac.organization.pojo.StudentClass">
+    insert into tb_student_class (student_class_id, student_id, class_id
+      )
+    values (#{studentClassId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.StudentClass">
+    update tb_student_class
+    set student_id = #{studentId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER}
+    where student_class_id = #{studentClassId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select student_class_id, student_id, class_id
+    from tb_student_class
+    where student_class_id = #{studentClassId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select student_class_id, student_id, class_id
+    from tb_student_class
+  </select>
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjrac.organization.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Admin">
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_gender" jdbcType="VARCHAR" property="adminGender" />
+    <result column="admin_tel" jdbcType="VARCHAR" property="adminTel" />
+    <result column="admin_age" jdbcType="VARCHAR" property="adminAge" />
+    <result column="admin_wechat" jdbcType="VARCHAR" property="adminWechat" />
+    <result column="admin_qq" jdbcType="VARCHAR" property="adminQq" />
+    <result column="admin_user_id" jdbcType="INTEGER" property="adminUserId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tjrac.organization.pojo.Admin">
+    insert into tb_admin (admin_id, admin_name, admin_gender, 
+      admin_tel, admin_age, admin_wechat, 
+      admin_qq, admin_user_id)
+    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminGender,jdbcType=VARCHAR}, 
+      #{adminTel,jdbcType=VARCHAR}, #{adminAge,jdbcType=VARCHAR}, #{adminWechat,jdbcType=VARCHAR}, 
+      #{adminQq,jdbcType=VARCHAR}, #{adminUserId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Admin">
+    update tb_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_gender = #{adminGender,jdbcType=VARCHAR},
+      admin_tel = #{adminTel,jdbcType=VARCHAR},
+      admin_age = #{adminAge,jdbcType=VARCHAR},
+      admin_wechat = #{adminWechat,jdbcType=VARCHAR},
+      admin_qq = #{adminQq,jdbcType=VARCHAR},
+      admin_user_id = #{adminUserId,jdbcType=INTEGER}
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq, 
+    admin_user_id
+    from tb_admin
+    where admin_id = #{adminId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq, 
+    admin_user_id
+    from tb_admin
+  </select>
+</mapper>

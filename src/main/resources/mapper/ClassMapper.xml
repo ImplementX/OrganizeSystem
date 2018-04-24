@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjrac.organization.dao.ClassMapper">
+  <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Class">
+    <id column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="class_course_id" jdbcType="INTEGER" property="classCourseId" />
+    <result column="class_max" jdbcType="INTEGER" property="classMax" />
+    <result column="class_time" jdbcType="VARCHAR" property="classTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tjrac.organization.pojo.Class">
+    insert into tb_class (class_id, class_name, class_course_id, 
+      class_max, class_time)
+    values (#{classId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classCourseId,jdbcType=INTEGER}, 
+      #{classMax,jdbcType=INTEGER}, #{classTime,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Class">
+    update tb_class
+    set class_name = #{className,jdbcType=VARCHAR},
+      class_course_id = #{classCourseId,jdbcType=INTEGER},
+      class_max = #{classMax,jdbcType=INTEGER},
+      class_time = #{classTime,jdbcType=VARCHAR}
+    where class_id = #{classId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select class_id, class_name, class_course_id, class_max, class_time
+    from tb_class
+    where class_id = #{classId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select class_id, class_name, class_course_id, class_max, class_time
+    from tb_class
+  </select>
+</mapper>
