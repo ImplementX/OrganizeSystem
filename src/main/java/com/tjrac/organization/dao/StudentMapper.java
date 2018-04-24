@@ -14,6 +14,8 @@ public interface StudentMapper {
 
     Student selectByPrimaryKey(Integer studentId);
 
+    Student selectByUserId(Integer userId);
+
     List<Student> selectAll();
 
     int updateByPrimaryKey(Student record);

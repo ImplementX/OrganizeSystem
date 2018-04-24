@@ -14,6 +14,8 @@ public interface TeacherMapper {
 
     Teacher selectByPrimaryKey(Integer teacherId);
 
+    Teacher selectByUserId(Integer userId);
+
     List<Teacher> selectAll();
 
     int updateByPrimaryKey(Teacher record);

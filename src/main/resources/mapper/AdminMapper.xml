@@ -16,11 +16,11 @@
     where admin_id = #{adminId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Admin">
-    insert into tb_admin (admin_id, admin_name, admin_gender, 
-      admin_tel, admin_age, admin_wechat, 
+    insert into tb_admin (admin_id, admin_name, admin_gender,
+      admin_tel, admin_age, admin_wechat,
       admin_qq, admin_user_id)
-    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminGender,jdbcType=VARCHAR}, 
-      #{adminTel,jdbcType=VARCHAR}, #{adminAge,jdbcType=VARCHAR}, #{adminWechat,jdbcType=VARCHAR}, 
+    values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminGender,jdbcType=VARCHAR},
+      #{adminTel,jdbcType=VARCHAR}, #{adminAge,jdbcType=VARCHAR}, #{adminWechat,jdbcType=VARCHAR},
       #{adminQq,jdbcType=VARCHAR}, #{adminUserId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Admin">
@@ -35,13 +35,19 @@
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq, 
+    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
     admin_user_id
     from tb_admin
     where admin_id = #{adminId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
+    admin_user_id
+    from tb_admin
+    where admin_user_id = #{userId,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq, 
+    select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
     admin_user_id
     from tb_admin
   </select>

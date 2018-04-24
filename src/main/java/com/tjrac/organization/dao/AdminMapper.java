@@ -14,7 +14,11 @@ public interface AdminMapper {
 
     Admin selectByPrimaryKey(Integer adminId);
 
+    Admin selectByUserId(Integer userId);
+
     List<Admin> selectAll();
 
     int updateByPrimaryKey(Admin record);
+
+
 }

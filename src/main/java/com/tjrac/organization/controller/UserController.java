@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.net.URL;
+
 
 @RestController
 @RequestMapping("/user")
@@ -25,8 +27,8 @@ public class UserController {
 
         if(user != null){
             mv.addObject("user", user);
-            mv.addObject("message","登录成功！");
-            mv.setViewName("index.html");
+//            mv.addObject("message","登录成功！");
+            mv.setViewName("redirect:/pages/index.html");
         }else {
 
             mv.addObject("message","用户名或密码错误！");

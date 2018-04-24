@@ -17,12 +17,12 @@
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Teacher">
-    insert into tb_teacher (teacher_id, teacher_number, teacher_name, 
-      teacher_gender, teacher_age, teacher_tel, 
+    insert into tb_teacher (teacher_id, teacher_number, teacher_name,
+      teacher_gender, teacher_age, teacher_tel,
       teacher_qq, teacher_wechat, teacher_user_id
       )
-    values (#{teacherId,jdbcType=INTEGER}, #{teacherNumber,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR}, 
-      #{teacherGender,jdbcType=VARCHAR}, #{teacherAge,jdbcType=VARCHAR}, #{teacherTel,jdbcType=VARCHAR}, 
+    values (#{teacherId,jdbcType=INTEGER}, #{teacherNumber,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR},
+      #{teacherGender,jdbcType=VARCHAR}, #{teacherAge,jdbcType=VARCHAR}, #{teacherTel,jdbcType=VARCHAR},
       #{teacherQq,jdbcType=VARCHAR}, #{teacherWechat,jdbcType=VARCHAR}, #{teacherUserId,jdbcType=INTEGER}
       )
   </insert>
@@ -39,13 +39,19 @@
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel, 
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
     teacher_qq, teacher_wechat, teacher_user_id
     from tb_teacher
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
+    teacher_qq, teacher_wechat, teacher_user_id
+    from tb_teacher
+    where teacher_user_id = #{userId,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel, 
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
     teacher_qq, teacher_wechat, teacher_user_id
     from tb_teacher
   </select>
