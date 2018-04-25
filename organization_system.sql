@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-04-24 18:36:10
+Date: 2018-04-25 18:24:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,7 +27,7 @@ CREATE TABLE `tb_admin` (
   `admin_age` varchar(4) DEFAULT NULL,
   `admin_wechat` varchar(16) DEFAULT NULL,
   `admin_qq` varchar(16) DEFAULT NULL,
-  `admin_user_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -42,7 +42,7 @@ DROP TABLE IF EXISTS `tb_class`;
 CREATE TABLE `tb_class` (
   `class_id` int(11) NOT NULL AUTO_INCREMENT,
   `class_name` varchar(32) DEFAULT NULL,
-  `class_course_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `class_max` int(11) DEFAULT NULL,
   `class_time` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`class_id`)
@@ -59,9 +59,10 @@ DROP TABLE IF EXISTS `tb_course`;
 CREATE TABLE `tb_course` (
   `course_id` int(11) NOT NULL AUTO_INCREMENT,
   `course_description` varchar(1024) DEFAULT NULL,
-  `course_teacher` int(11) DEFAULT NULL,
+  `teacher_id` int(11) NOT NULL,
   `course_type` varchar(32) DEFAULT NULL,
-  `course_organization_id` int(11) NOT NULL,
+  `organization_id` int(11) NOT NULL,
+  `course_tags` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -75,8 +76,8 @@ CREATE TABLE `tb_course` (
 DROP TABLE IF EXISTS `tb_grade`;
 CREATE TABLE `tb_grade` (
   `grade_id` int(11) NOT NULL AUTO_INCREMENT,
-  `grade_course_id` int(11) NOT NULL,
-  `grade_student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
   `grade_number` int(11) NOT NULL,
   PRIMARY KEY (`grade_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -93,6 +94,7 @@ CREATE TABLE `tb_organization` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT,
   `organization_name` varchar(32) DEFAULT NULL,
   `organization_description` varchar(1024) DEFAULT NULL,
+  `organization_tags` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`organization_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -115,7 +117,7 @@ CREATE TABLE `tb_student` (
   `student_wechat` varchar(32) DEFAULT NULL,
   `student_major` varchar(32) DEFAULT NULL,
   `student_department` varchar(16) DEFAULT NULL,
-  `student_user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`student_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -139,6 +141,21 @@ CREATE TABLE `tb_student_class` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for tb_student_course
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_student_course`;
+CREATE TABLE `tb_student_course` (
+  `student_course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  PRIMARY KEY (`student_course_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_student_course
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for tb_teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_teacher`;
@@ -151,7 +168,7 @@ CREATE TABLE `tb_teacher` (
   `teacher_tel` varchar(16) DEFAULT NULL,
   `teacher_qq` varchar(32) DEFAULT NULL,
   `teacher_wechat` varchar(32) DEFAULT NULL,
-  `teacher_user_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`teacher_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
