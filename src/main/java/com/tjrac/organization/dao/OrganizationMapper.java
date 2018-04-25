@@ -14,6 +14,8 @@ public interface OrganizationMapper {
 
     Organization selectByPrimaryKey(Integer organizationId);
 
+    List<Organization> selectByTags(String organizationTags);
+
     List<Organization> selectAll();
 
     int updateByPrimaryKey(Organization record);

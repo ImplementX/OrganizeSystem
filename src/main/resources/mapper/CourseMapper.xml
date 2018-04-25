@@ -7,6 +7,7 @@
     <result column="course_teacher" jdbcType="INTEGER" property="courseTeacher" />
     <result column="course_type" jdbcType="VARCHAR" property="courseType" />
     <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="course_tags" jdbcType="VARCHAR" property="courseTags" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_course
@@ -14,30 +15,31 @@
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Course">
     insert into tb_course (course_id, course_description, course_teacher, 
-      course_type, organization_id)
+      course_type, organization_id, course_tags)
     values (#{courseId,jdbcType=INTEGER}, #{courseDescription,jdbcType=VARCHAR}, #{courseTeacher,jdbcType=INTEGER}, 
-      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER})
+      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, #{courseTags,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Course">
     update tb_course
     set course_description = #{courseDescription,jdbcType=VARCHAR},
       course_teacher = #{courseTeacher,jdbcType=INTEGER},
       course_type = #{courseType,jdbcType=VARCHAR},
-      organization_id = #{organizationId,jdbcType=INTEGER}
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      course_tags = #{courseTags,jdbcType=VARCHAR}
     where course_id = #{courseId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select course_id, course_description, course_teacher, course_type, organization_id
+    select course_id, course_description, course_teacher, course_type, organization_id, course_tags
     from tb_course
     where course_id = #{courseId,jdbcType=INTEGER}
   </select>
   <select id="selectByOrganizationId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select course_id, course_description, course_teacher, course_type, organization_id
+    select course_id, course_description, course_teacher, course_type, organization_id, course_tags
     from tb_course
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select course_id, course_description, course_teacher, course_type, organization_id
+    select course_id, course_description, course_teacher, course_type, organization_id, course_tags
     from tb_course
   </select>
 </mapper>

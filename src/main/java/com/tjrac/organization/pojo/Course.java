@@ -11,6 +11,8 @@ public class Course {
 
     private Integer organizationId;
 
+    private String courseTags;
+
     public Integer getCourseId() {
         return courseId;
     }
@@ -51,6 +53,14 @@ public class Course {
         this.organizationId = organizationId;
     }
 
+    public String getCourseTags() {
+        return courseTags;
+    }
+
+    public void setCourseTags(String courseTags) {
+        this.courseTags = courseTags;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -59,6 +69,7 @@ public class Course {
                 ", courseTeacher=" + courseTeacher +
                 ", courseType='" + courseType + '\'' +
                 ", organizationId=" + organizationId +
+                ", courseTags='" + courseTags + '\'' +
                 '}';
     }
 }

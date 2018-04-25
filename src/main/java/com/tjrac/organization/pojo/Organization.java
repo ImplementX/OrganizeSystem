@@ -7,6 +7,8 @@ public class Organization {
 
     private String organizationDescription;
 
+    private String organizationTags;
+
     public Integer getOrganizationId() {
         return organizationId;
     }
@@ -31,12 +33,21 @@ public class Organization {
         this.organizationDescription = organizationDescription == null ? null : organizationDescription.trim();
     }
 
+    public String getOrganizationTags() {
+        return organizationTags;
+    }
+
+    public void setOrganizationTags(String organizationTags) {
+        this.organizationTags = organizationTags;
+    }
+
     @Override
     public String toString() {
         return "Organization{" +
                 "organizationId=" + organizationId +
                 ", organizationName='" + organizationName + '\'' +
                 ", organizationDescription='" + organizationDescription + '\'' +
+                ", organizationTags='" + organizationTags + '\'' +
                 '}';
     }
 }
