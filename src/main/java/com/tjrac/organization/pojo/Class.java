@@ -5,7 +5,7 @@ public class Class {
 
     private String className;
 
-    private Integer classCourseId;
+    private Integer courseId;
 
     private Integer classMax;
 
@@ -27,12 +27,12 @@ public class Class {
         this.className = className == null ? null : className.trim();
     }
 
-    public Integer getClassCourseId() {
-        return classCourseId;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setClassCourseId(Integer classCourseId) {
-        this.classCourseId = classCourseId;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public Integer getClassMax() {
@@ -49,5 +49,16 @@ public class Class {
 
     public void setClassTime(String classTime) {
         this.classTime = classTime == null ? null : classTime.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "classId=" + classId +
+                ", className='" + className + '\'' +
+                ", courseId=" + courseId +
+                ", classMax=" + classMax +
+                ", classTime='" + classTime + '\'' +
+                '}';
     }
 }

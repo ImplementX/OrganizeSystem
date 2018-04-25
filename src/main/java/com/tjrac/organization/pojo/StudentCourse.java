@@ -30,4 +30,14 @@ public class StudentCourse {
     public void setCourseId(Integer courseId) {
         this.courseId = courseId;
     }
+
+
+    @Override
+    public String toString() {
+        return "StudentCourse{" +
+                "studentCourseId=" + studentCourseId +
+                ", studentId=" + studentId +
+                ", courseId=" + courseId +
+                '}';
+    }
 }

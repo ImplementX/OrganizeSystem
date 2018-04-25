@@ -14,6 +14,8 @@ public interface ClassMapper {
 
     Class selectByPrimaryKey(Integer classId);
 
+    List<Class> selectByCourseId(Integer courseId);
+
     List<Class> selectAll();
 
     int updateByPrimaryKey(Class record);

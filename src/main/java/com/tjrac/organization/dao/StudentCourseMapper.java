@@ -10,9 +10,9 @@ public interface StudentCourseMapper {
 
     StudentCourse selectByPrimaryKey(Integer studentCourseId);
 
-    StudentCourse selectByStudentId(Integer studentId);
+    List<StudentCourse> selectByStudentId(Integer studentId);
 
-    StudentCourse selectByCourseId(Integer courseId);
+    List<StudentCourse> selectByCourseId(Integer courseId);
 
     List<StudentCourse> selectAll();
 

@@ -14,6 +14,10 @@ public interface GradeMapper {
 
     Grade selectByPrimaryKey(Integer gradeId);
 
+    List<Grade> selectByCourseId(Integer courseId);
+
+    List<Grade> selectByStudentId(Integer studentId);
+
     List<Grade> selectAll();
 
     int updateByPrimaryKey(Grade record);

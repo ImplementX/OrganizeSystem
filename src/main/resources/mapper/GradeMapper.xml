@@ -3,8 +3,8 @@
 <mapper namespace="com.tjrac.organization.dao.GradeMapper">
   <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Grade">
     <id column="grade_id" jdbcType="INTEGER" property="gradeId" />
-    <result column="grade_course_id" jdbcType="INTEGER" property="gradeCourseId" />
-    <result column="grade_student_id" jdbcType="INTEGER" property="gradeStudentId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
     <result column="grade_number" jdbcType="INTEGER" property="gradeNumber" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -12,25 +12,35 @@
     where grade_id = #{gradeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Grade">
-    insert into tb_grade (grade_id, grade_course_id, grade_student_id, 
+    insert into tb_grade (grade_id, course_id, student_id, 
       grade_number)
-    values (#{gradeId,jdbcType=INTEGER}, #{gradeCourseId,jdbcType=INTEGER}, #{gradeStudentId,jdbcType=INTEGER}, 
+    values (#{gradeId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
       #{gradeNumber,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Grade">
     update tb_grade
-    set grade_course_id = #{gradeCourseId,jdbcType=INTEGER},
-      grade_student_id = #{gradeStudentId,jdbcType=INTEGER},
+    set course_id = #{courseId,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=INTEGER},
       grade_number = #{gradeNumber,jdbcType=INTEGER}
     where grade_id = #{gradeId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select grade_id, grade_course_id, grade_student_id, grade_number
+    select grade_id, course_id, student_id, grade_number
     from tb_grade
     where grade_id = #{gradeId,jdbcType=INTEGER}
   </select>
+  <select id="selectByStudentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select grade_id, course_id, student_id, grade_number
+    from tb_grade
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select grade_id, course_id, student_id, grade_number
+    from tb_grade
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select grade_id, grade_course_id, grade_student_id, grade_number
+    select grade_id, course_id, student_id, grade_number
     from tb_grade
   </select>
 </mapper>

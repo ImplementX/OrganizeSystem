@@ -15,7 +15,7 @@ public class Admin {
 
     private String adminQq;
 
-    private Integer adminUserId;
+    private Integer userId;
 
     public Integer getAdminId() {
         return adminId;
@@ -73,11 +73,25 @@ public class Admin {
         this.adminQq = adminQq == null ? null : adminQq.trim();
     }
 
-    public Integer getAdminUserId() {
-        return adminUserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setAdminUserId(Integer adminUserId) {
-        this.adminUserId = adminUserId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
+                ", adminGender='" + adminGender + '\'' +
+                ", adminTel='" + adminTel + '\'' +
+                ", adminAge='" + adminAge + '\'' +
+                ", adminWechat='" + adminWechat + '\'' +
+                ", adminQq='" + adminQq + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }

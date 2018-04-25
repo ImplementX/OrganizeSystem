@@ -17,7 +17,7 @@ public class Teacher {
 
     private String teacherWechat;
 
-    private Integer teacherUserId;
+    private Integer userId;
 
     public Integer getTeacherId() {
         return teacherId;
@@ -83,11 +83,26 @@ public class Teacher {
         this.teacherWechat = teacherWechat == null ? null : teacherWechat.trim();
     }
 
-    public Integer getTeacherUserId() {
-        return teacherUserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setTeacherUserId(Integer teacherUserId) {
-        this.teacherUserId = teacherUserId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", teacherNumber=" + teacherNumber +
+                ", teacherName='" + teacherName + '\'' +
+                ", teacherGender='" + teacherGender + '\'' +
+                ", teacherAge='" + teacherAge + '\'' +
+                ", teacherTel='" + teacherTel + '\'' +
+                ", teacherQq='" + teacherQq + '\'' +
+                ", teacherWechat='" + teacherWechat + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }

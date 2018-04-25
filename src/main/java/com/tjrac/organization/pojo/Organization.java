@@ -30,4 +30,13 @@ public class Organization {
     public void setOrganizationDescription(String organizationDescription) {
         this.organizationDescription = organizationDescription == null ? null : organizationDescription.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Organization{" +
+                "organizationId=" + organizationId +
+                ", organizationName='" + organizationName + '\'' +
+                ", organizationDescription='" + organizationDescription + '\'' +
+                '}';
+    }
 }

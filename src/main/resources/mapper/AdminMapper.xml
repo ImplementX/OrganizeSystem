@@ -9,7 +9,7 @@
     <result column="admin_age" jdbcType="VARCHAR" property="adminAge" />
     <result column="admin_wechat" jdbcType="VARCHAR" property="adminWechat" />
     <result column="admin_qq" jdbcType="VARCHAR" property="adminQq" />
-    <result column="admin_user_id" jdbcType="INTEGER" property="adminUserId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_admin
@@ -18,10 +18,10 @@
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Admin">
     insert into tb_admin (admin_id, admin_name, admin_gender,
       admin_tel, admin_age, admin_wechat,
-      admin_qq, admin_user_id)
+      admin_qq, user_id)
     values (#{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, #{adminGender,jdbcType=VARCHAR},
       #{adminTel,jdbcType=VARCHAR}, #{adminAge,jdbcType=VARCHAR}, #{adminWechat,jdbcType=VARCHAR},
-      #{adminQq,jdbcType=VARCHAR}, #{adminUserId,jdbcType=INTEGER})
+      #{adminQq,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Admin">
     update tb_admin
@@ -31,24 +31,24 @@
       admin_age = #{adminAge,jdbcType=VARCHAR},
       admin_wechat = #{adminWechat,jdbcType=VARCHAR},
       admin_qq = #{adminQq,jdbcType=VARCHAR},
-      admin_user_id = #{adminUserId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER}
     where admin_id = #{adminId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
-    admin_user_id
+    user_id
     from tb_admin
     where admin_id = #{adminId,jdbcType=INTEGER}
   </select>
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
-    admin_user_id
+    user_id
     from tb_admin
-    where admin_user_id = #{userId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select admin_id, admin_name, admin_gender, admin_tel, admin_age, admin_wechat, admin_qq,
-    admin_user_id
+    user_id
     from tb_admin
   </select>
 </mapper>

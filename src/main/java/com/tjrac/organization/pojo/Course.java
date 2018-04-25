@@ -9,7 +9,7 @@ public class Course {
 
     private String courseType;
 
-    private Integer courseOrganizationId;
+    private Integer organizationId;
 
     public Integer getCourseId() {
         return courseId;
@@ -43,11 +43,22 @@ public class Course {
         this.courseType = courseType == null ? null : courseType.trim();
     }
 
-    public Integer getCourseOrganizationId() {
-        return courseOrganizationId;
+    public Integer getOrganizationId() {
+        return organizationId;
     }
 
-    public void setCourseOrganizationId(Integer courseOrganizationId) {
-        this.courseOrganizationId = courseOrganizationId;
+    public void setOrganizationId(Integer organizationId) {
+        this.organizationId = organizationId;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseDescription='" + courseDescription + '\'' +
+                ", courseTeacher=" + courseTeacher +
+                ", courseType='" + courseType + '\'' +
+                ", organizationId=" + organizationId +
+                '}';
     }
 }

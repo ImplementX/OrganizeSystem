@@ -12,7 +12,7 @@
     <result column="student_wechat" jdbcType="VARCHAR" property="studentWechat" />
     <result column="student_major" jdbcType="VARCHAR" property="studentMajor" />
     <result column="student_department" jdbcType="VARCHAR" property="studentDepartment" />
-    <result column="student_user_id" jdbcType="INTEGER" property="studentUserId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_student
@@ -22,11 +22,11 @@
     insert into tb_student (student_id, student_number, student_name,
       student_gender, student_tel, student_age,
       student_qq, student_wechat, student_major,
-      student_department, student_user_id)
+      student_department, user_id)
     values (#{studentId,jdbcType=INTEGER}, #{studentNumber,jdbcType=INTEGER}, #{studentName,jdbcType=VARCHAR},
       #{studentGender,jdbcType=VARCHAR}, #{studentTel,jdbcType=VARCHAR}, #{studentAge,jdbcType=VARCHAR},
       #{studentQq,jdbcType=VARCHAR}, #{studentWechat,jdbcType=VARCHAR}, #{studentMajor,jdbcType=VARCHAR},
-      #{studentDepartment,jdbcType=VARCHAR}, #{studentUserId,jdbcType=INTEGER})
+      #{studentDepartment,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Student">
     update tb_student
@@ -39,24 +39,24 @@
       student_wechat = #{studentWechat,jdbcType=VARCHAR},
       student_major = #{studentMajor,jdbcType=VARCHAR},
       student_department = #{studentDepartment,jdbcType=VARCHAR},
-      student_user_id = #{studentUserId,jdbcType=INTEGER}
+      user_id = #{userId,jdbcType=INTEGER}
     where student_id = #{studentId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select student_id, student_number, student_name, student_gender, student_tel, student_age,
-    student_qq, student_wechat, student_major, student_department, student_user_id
+    student_qq, student_wechat, student_major, student_department, user_id
     from tb_student
     where student_id = #{studentId,jdbcType=INTEGER}
   </select>
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select student_id, student_number, student_name, student_gender, student_tel, student_age,
-    student_qq, student_wechat, student_major, student_department, student_user_id
+    student_qq, student_wechat, student_major, student_department, user_id
     from tb_student
-    where student_user_id = #{userId,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select student_id, student_number, student_name, student_gender, student_tel, student_age,
-    student_qq, student_wechat, student_major, student_department, student_user_id
+    student_qq, student_wechat, student_major, student_department, user_id
     from tb_student
   </select>
 </mapper>

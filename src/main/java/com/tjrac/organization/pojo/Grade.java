@@ -3,9 +3,9 @@ package com.tjrac.organization.pojo;
 public class Grade {
     private Integer gradeId;
 
-    private Integer gradeCourseId;
+    private Integer courseId;
 
-    private Integer gradeStudentId;
+    private Integer studentId;
 
     private Integer gradeNumber;
 
@@ -17,20 +17,20 @@ public class Grade {
         this.gradeId = gradeId;
     }
 
-    public Integer getGradeCourseId() {
-        return gradeCourseId;
+    public Integer getCourseId() {
+        return courseId;
     }
 
-    public void setGradeCourseId(Integer gradeCourseId) {
-        this.gradeCourseId = gradeCourseId;
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
-    public Integer getGradeStudentId() {
-        return gradeStudentId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setGradeStudentId(Integer gradeStudentId) {
-        this.gradeStudentId = gradeStudentId;
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public Integer getGradeNumber() {
@@ -39,5 +39,15 @@ public class Grade {
 
     public void setGradeNumber(Integer gradeNumber) {
         this.gradeNumber = gradeNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Grade{" +
+                "gradeId=" + gradeId +
+                ", courseId=" + courseId +
+                ", studentId=" + studentId +
+                ", gradeNumber=" + gradeNumber +
+                '}';
     }
 }

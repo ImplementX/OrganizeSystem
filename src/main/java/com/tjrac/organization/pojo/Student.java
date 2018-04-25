@@ -21,7 +21,7 @@ public class Student {
 
     private String studentDepartment;
 
-    private Integer studentUserId;
+    private Integer userId;
 
     public Integer getStudentId() {
         return studentId;
@@ -103,11 +103,28 @@ public class Student {
         this.studentDepartment = studentDepartment == null ? null : studentDepartment.trim();
     }
 
-    public Integer getStudentUserId() {
-        return studentUserId;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setStudentUserId(Integer studentUserId) {
-        this.studentUserId = studentUserId;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentNumber=" + studentNumber +
+                ", studentName='" + studentName + '\'' +
+                ", studentGender='" + studentGender + '\'' +
+                ", studentTel='" + studentTel + '\'' +
+                ", studentAge='" + studentAge + '\'' +
+                ", studentQq='" + studentQq + '\'' +
+                ", studentWechat='" + studentWechat + '\'' +
+                ", studentMajor='" + studentMajor + '\'' +
+                ", studentDepartment='" + studentDepartment + '\'' +
+                ", userId=" + userId +
+                '}';
     }
 }

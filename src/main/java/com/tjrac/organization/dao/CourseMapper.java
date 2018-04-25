@@ -14,6 +14,8 @@ public interface CourseMapper {
 
     Course selectByPrimaryKey(Integer courseId);
 
+    List<Course> selectByOrganizationId(Integer organizationId);
+
     List<Course> selectAll();
 
     int updateByPrimaryKey(Course record);

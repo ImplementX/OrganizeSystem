@@ -30,4 +30,13 @@ public class StudentClass {
     public void setClassId(Integer classId) {
         this.classId = classId;
     }
+
+    @Override
+    public String toString() {
+        return "StudentClass{" +
+                "studentClassId=" + studentClassId +
+                ", studentId=" + studentId +
+                ", classId=" + classId +
+                '}';
+    }
 }
