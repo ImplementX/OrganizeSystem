@@ -5,7 +5,7 @@ public class Course {
 
     private String courseDescription;
 
-    private Integer courseTeacher;
+    private Integer teacherId;
 
     private String courseType;
 
@@ -29,12 +29,12 @@ public class Course {
         this.courseDescription = courseDescription == null ? null : courseDescription.trim();
     }
 
-    public Integer getCourseTeacher() {
-        return courseTeacher;
+    public Integer getTeacherId() {
+        return teacherId;
     }
 
-    public void setCourseTeacher(Integer courseTeacher) {
-        this.courseTeacher = courseTeacher;
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 
     public String getCourseType() {
@@ -66,7 +66,7 @@ public class Course {
         return "Course{" +
                 "courseId=" + courseId +
                 ", courseDescription='" + courseDescription + '\'' +
-                ", courseTeacher=" + courseTeacher +
+                ", teacherId=" + teacherId +
                 ", courseType='" + courseType + '\'' +
                 ", organizationId=" + organizationId +
                 ", courseTags='" + courseTags + '\'' +

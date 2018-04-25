@@ -60,8 +60,8 @@ public class UserController {
 
     @RequestMapping("/")
     @ResponseBody
-    public String hello(){
-        return "hello world";
+    public String hello(String test){
+        return test;
     }
 
 
