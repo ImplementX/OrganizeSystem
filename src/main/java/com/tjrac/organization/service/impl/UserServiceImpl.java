@@ -6,9 +6,7 @@ import com.tjrac.organization.service.UserService;
 import com.tjrac.organization.util.EncryptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -33,13 +31,11 @@ public class UserServiceImpl implements UserService {
 
     public boolean removeUser(int userId){
         return  userMapper.deleteByPrimaryKey(userId)>0?true:false;
-
     }
 
 
     public boolean updateUser(User thisUser) {
         return userMapper.updateByPrimaryKey(thisUser)>0?true:false;
-
     }
 
     public List<User> listAll() {

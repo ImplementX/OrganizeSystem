@@ -22,6 +22,12 @@ public class OrganizationController {
         return gson.toJson(organizationService.listAll());
     }
 
+    @RequestMapping("/find-by-tag")
+    @ResponseBody
+    public String find(String tags){
+        return gson.toJson(organizationService.listOrganizationByTags(tags));
+    }
+
     @RequestMapping("/delete")
     @ResponseBody
     public String delete(int organizationId){
@@ -46,9 +52,5 @@ public class OrganizationController {
         return gson.toJson(organizationService.getOrganization(organizationId));
     }
 
-    @RequestMapping("/find-by-tag")
-    @ResponseBody
-    public String find(String tags){
-        return gson.toJson(organizationService.listOrganizationByTags(tags));
-    }
+
 }
