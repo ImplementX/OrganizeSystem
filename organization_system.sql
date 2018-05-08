@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-04-25 18:24:40
+Date: 2018-05-08 18:20:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -100,6 +100,21 @@ CREATE TABLE `tb_organization` (
 
 -- ----------------------------
 -- Records of tb_organization
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_organization_student
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_organization_student`;
+CREATE TABLE `tb_organization_student` (
+  `organization_student_id` int(11) NOT NULL,
+  `organization_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  PRIMARY KEY (`organization_student_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_organization_student
 -- ----------------------------
 
 -- ----------------------------
