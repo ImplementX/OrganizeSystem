@@ -1,5 +1,7 @@
 package com.tjrac.organization.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.tjrac.organization.pojo.User;
 import com.tjrac.organization.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,27 +22,29 @@ import java.net.URL;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    Gson gson;
+
 
     @RequestMapping("/login")
-    public ModelAndView login(ModelAndView mv, String  username, String password){
+    public String login(String  username, String password){
         User user = userService.isUser(username, password);
-
+        JsonObject json = new JsonObject();
         if(user != null){
-            mv.addObject("user", user);
+            json.addProperty("user", gson.toJson( user ));
 //            mv.addObject("message","登录成功！");
             switch (user.getUserType()){
-                case 1:mv.setViewName("redirect:/pages/index_admin.html");break;
-                case 2:mv.setViewName("redirect:/pages/index_teacher.html");break;
-                case 3:mv.setViewName("redirect:/pages/index_student.html");break;
+                case 1:json.addProperty("page","admin");break;
+                case 2:json.addProperty("page","teacher");break;
+                case 3:json.addProperty("page","student");break;
             }
-            mv.setViewName("redirect:/pages/index_admin.html");
+
         }else {
 
-            mv.addObject("message","用户名或密码错误！");
-
-            mv.addObject("user", null);
+            json.addProperty("message","用户名或密码错误！");
+            json.addProperty("user", "");
         }
-        return mv;
+        return json.toString();
     }
 
 
