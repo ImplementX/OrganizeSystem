@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-05-08 18:20:53
+Date: 2018-05-14 18:40:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,12 +62,31 @@ CREATE TABLE `tb_course` (
   `teacher_id` int(11) NOT NULL,
   `course_type` varchar(32) DEFAULT NULL,
   `organization_id` int(11) NOT NULL,
-  `course_tags` varchar(255) DEFAULT NULL,
+  `course_tag` int(255) DEFAULT NULL,
+  `course_is_full` int(255) NOT NULL,
+  `course_number_limit` int(11) DEFAULT NULL,
   PRIMARY KEY (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_course
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_course_application
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_course_application`;
+CREATE TABLE `tb_course_application` (
+  `course_application_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `course_application_result` int(11) NOT NULL DEFAULT '-1',
+  `course_application_type` int(11) NOT NULL,
+  PRIMARY KEY (`course_application_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_course_application
 -- ----------------------------
 
 -- ----------------------------
@@ -92,29 +111,16 @@ CREATE TABLE `tb_grade` (
 DROP TABLE IF EXISTS `tb_organization`;
 CREATE TABLE `tb_organization` (
   `organization_id` int(11) NOT NULL AUTO_INCREMENT,
-  `organization_name` varchar(32) DEFAULT NULL,
-  `organization_description` varchar(1024) DEFAULT NULL,
-  `organization_tags` varchar(255) DEFAULT NULL,
+  `organization_name` varchar(32) NOT NULL,
+  `organization_description` varchar(1024) NOT NULL,
+  `organization_tag` int(255) DEFAULT NULL,
+  `organization_owner` int(11) DEFAULT NULL,
+  `organization_vice_owner` int(255) DEFAULT NULL,
   PRIMARY KEY (`organization_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_organization
--- ----------------------------
-
--- ----------------------------
--- Table structure for tb_organization_student
--- ----------------------------
-DROP TABLE IF EXISTS `tb_organization_student`;
-CREATE TABLE `tb_organization_student` (
-  `organization_student_id` int(11) NOT NULL,
-  `organization_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  PRIMARY KEY (`organization_student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_organization_student
 -- ----------------------------
 
 -- ----------------------------
@@ -163,11 +169,27 @@ CREATE TABLE `tb_student_course` (
   `student_course_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL,
+  `student_course` int(255) DEFAULT NULL,
   PRIMARY KEY (`student_course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_student_course
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tb_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_tag`;
+CREATE TABLE `tb_tag` (
+  `tag_id` int(11) NOT NULL,
+  `tag_name` varchar(255) NOT NULL,
+  `tag_description` varchar(2048) DEFAULT NULL,
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_tag
 -- ----------------------------
 
 -- ----------------------------
@@ -201,10 +223,12 @@ CREATE TABLE `tb_user` (
   `user_pwd` varchar(30) DEFAULT NULL,
   `user_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
 INSERT INTO `tb_user` VALUES ('1', 'admin', '4QrcOUm6Wau+VuBX8g+IPg==', '1');
+INSERT INTO `tb_user` VALUES ('2', 'student', '4QrcOUm6Wau+VuBX8g+IPg==', '3');
+INSERT INTO `tb_user` VALUES ('3', 'teacher', '4QrcOUm6Wau+VuBX8g+IPg==', '2');
 SET FOREIGN_KEY_CHECKS=1;
