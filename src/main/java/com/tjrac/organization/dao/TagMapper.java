@@ -1,8 +1,12 @@
 package com.tjrac.organization.dao;
 
 import com.tjrac.organization.pojo.Tag;
-import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+@Repository
+@Mapper
 public interface TagMapper {
     int deleteByPrimaryKey(Integer tagId);
 

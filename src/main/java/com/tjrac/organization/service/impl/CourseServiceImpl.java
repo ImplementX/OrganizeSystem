@@ -35,4 +35,8 @@ public class CourseServiceImpl implements CourseService{
     public List<Course> listAll() {
         return courseMapper.selectAll();
     }
+
+    public List< Course > listCourseNotFull() {
+      return  courseMapper.selectIsNotFull();
+    }
 }

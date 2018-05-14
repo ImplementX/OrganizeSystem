@@ -2,6 +2,7 @@ package com.tjrac.organization.service.impl;
 
 import com.tjrac.organization.dao.OrganizationMapper;
 import com.tjrac.organization.pojo.Organization;
+import com.tjrac.organization.pojo.Tag;
 import com.tjrac.organization.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,10 @@ public class OrganzationServiceImpl implements OrganizationService {
         return organizationMapper.selectByPrimaryKey(organizationId);
     }
 
-    public List<Organization> listOrganizationByTags(String tags) {
-        return organizationMapper.selectByTags(tags);
+
+
+    public List<Organization> listOrganizationByTag(Tag tag) {
+        return organizationMapper.selectByTag(tag);
     }
 
     public boolean saveOrganization(Organization newOrganization) {
@@ -36,4 +39,6 @@ public class OrganzationServiceImpl implements OrganizationService {
     public List<Organization> listAll() {
         return organizationMapper.selectAll();
     }
+
+
 }

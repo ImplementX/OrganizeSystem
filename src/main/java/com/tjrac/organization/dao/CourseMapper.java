@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 @Repository
 @Mapper
 public interface CourseMapper {
@@ -14,9 +15,11 @@ public interface CourseMapper {
 
     Course selectByPrimaryKey(Integer courseId);
 
-    List<Course> selectByOrganizationId(Integer organizationId);
-
     List<Course> selectAll();
 
     int updateByPrimaryKey(Course record);
+
+    List<Course> selectByOrganizationId(Integer organizationId);
+
+    List<Course> selectIsNotFull();
 }

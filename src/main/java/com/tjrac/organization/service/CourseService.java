@@ -16,4 +16,6 @@ public interface CourseService {
     boolean updateCourse(Course course);
 
     List<Course> listAll();
+
+    List<Course> listCourseNotFull();
 }

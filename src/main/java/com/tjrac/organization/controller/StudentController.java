@@ -1,13 +1,22 @@
 package com.tjrac.organization.controller;
 
 import com.google.gson.Gson;
+import com.tjrac.organization.pojo.Course;
+import com.tjrac.organization.pojo.CourseApplication;
 import com.tjrac.organization.pojo.Student;
+import com.tjrac.organization.pojo.StudentCourse;
+import com.tjrac.organization.service.CourseApplicationService;
+import com.tjrac.organization.service.CourseService;
+import com.tjrac.organization.service.StudentCourseService;
 import com.tjrac.organization.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,36 +25,39 @@ public class StudentController {
     @Autowired
     StudentService studentService;
     @Autowired
+    StudentCourseService studentCourseService;
+    @Autowired
+    CourseService courseService;
+    @Autowired
+    CourseApplicationService courseApplicationService;
+
+    @Autowired
     Gson gson;
-    @RequestMapping("/student-list")
-    @ResponseBody
-    public String studentList(){
-        return gson.toJson(studentService.listAll());
+
+
+    @RequestMapping( "/get-my-course" )
+    public String myCourse( int studentId ) {
+        List< StudentCourse > studentCourseList = studentCourseService.listStudentCourseByStudentId( studentId );
+        List< Course > list = new ArrayList<>();
+        for ( StudentCourse studentCourse : studentCourseList ) {
+            Course c = courseService.getCourse( studentCourse.getCourseId() );
+            list.add( c );
+        }
+
+        return gson.toJson(list);
     }
 
-    @RequestMapping("/delete")
-    @ResponseBody
-    public String delete(int studentId){
-        return studentService.removeStudent(studentId)?"删除成功！":"删除失败！";
+    @RequestMapping("/get-new-course")
+    public String newCourse(){
+     return  gson.toJson( courseService.listCourseNotFull() ) ;
     }
 
-    @RequestMapping("/add")
-    @ResponseBody
-    public  String add(String newStudent){
-        return studentService.saveStudent(gson.fromJson(newStudent, Student.class))?"添加成功！":"添加失败！";
+    @RequestMapping("/get-my-application")
+    public String myApplication( HttpSession session){
+        int userId = (int)session.getAttribute( "userId" );
+        return  gson.toJson( courseApplicationService.listByStudentId( userId ) )  ;
     }
 
-    @RequestMapping("/update")
-    @ResponseBody
-    public String update(String thisStudent){
-        return studentService.saveStudent(gson.fromJson(thisStudent, Student.class))?"添加成功！":"添加失败！";
-    }
-
-    @RequestMapping("/find")
-    @ResponseBody
-    public String find(int userId){
-        return gson.toJson(studentService.getStudent(userId));
-    }
 
 
 

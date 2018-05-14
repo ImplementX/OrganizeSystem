@@ -11,7 +11,11 @@ public class Course {
 
     private Integer organizationId;
 
-    private String courseTags;
+    private Integer courseTag;
+
+    private Integer courseIsFull;
+
+    private Integer courseNumberLimit;
 
     public Integer getCourseId() {
         return courseId;
@@ -53,23 +57,27 @@ public class Course {
         this.organizationId = organizationId;
     }
 
-    public String getCourseTags() {
-        return courseTags;
+    public Integer getCourseTag() {
+        return courseTag;
     }
 
-    public void setCourseTags(String courseTags) {
-        this.courseTags = courseTags;
+    public void setCourseTag(Integer courseTag) {
+        this.courseTag = courseTag;
     }
 
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", courseDescription='" + courseDescription + '\'' +
-                ", teacherId=" + teacherId +
-                ", courseType='" + courseType + '\'' +
-                ", organizationId=" + organizationId +
-                ", courseTags='" + courseTags + '\'' +
-                '}';
+    public Integer getCourseIsFull() {
+        return courseIsFull;
+    }
+
+    public void setCourseIsFull(Integer courseIsFull) {
+        this.courseIsFull = courseIsFull;
+    }
+
+    public Integer getCourseNumberLimit() {
+        return courseNumberLimit;
+    }
+
+    public void setCourseNumberLimit(Integer courseNumberLimit) {
+        this.courseNumberLimit = courseNumberLimit;
     }
 }

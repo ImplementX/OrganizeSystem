@@ -7,7 +7,9 @@
     <result column="teacher_id" jdbcType="INTEGER" property="teacherId" />
     <result column="course_type" jdbcType="VARCHAR" property="courseType" />
     <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
-    <result column="course_tags" jdbcType="VARCHAR" property="courseTags" />
+    <result column="course_tag" jdbcType="INTEGER" property="courseTag" />
+    <result column="course_is_full" jdbcType="INTEGER" property="courseIsFull" />
+    <result column="course_number_limit" jdbcType="INTEGER" property="courseNumberLimit" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_course
@@ -15,9 +17,11 @@
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Course">
     insert into tb_course (course_id, course_description, teacher_id, 
-      course_type, organization_id, course_tags)
+      course_type, organization_id, course_tag, 
+      course_is_full, course_number_limit)
     values (#{courseId,jdbcType=INTEGER}, #{courseDescription,jdbcType=VARCHAR}, #{teacherId,jdbcType=INTEGER}, 
-      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, #{courseTags,jdbcType=VARCHAR})
+      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, #{courseTag,jdbcType=INTEGER}, 
+      #{courseIsFull,jdbcType=INTEGER}, #{courseNumberLimit,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Course">
     update tb_course
@@ -25,21 +29,34 @@
       teacher_id = #{teacherId,jdbcType=INTEGER},
       course_type = #{courseType,jdbcType=VARCHAR},
       organization_id = #{organizationId,jdbcType=INTEGER},
-      course_tags = #{courseTags,jdbcType=VARCHAR}
+      course_tag = #{courseTag,jdbcType=INTEGER},
+      course_is_full = #{courseIsFull,jdbcType=INTEGER},
+      course_number_limit = #{courseNumberLimit,jdbcType=INTEGER}
     where course_id = #{courseId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select course_id, course_description, teacher_id, course_type, organization_id, course_tags
+    select course_id, course_description, teacher_id, course_type, organization_id, course_tag, 
+    course_is_full, course_number_limit
     from tb_course
     where course_id = #{courseId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select course_id, course_description, teacher_id, course_type, organization_id, course_tag, 
+    course_is_full, course_number_limit
+    from tb_course
+  </select>
+  <select id="selectIsNotFull" resultMap="BaseResultMap">
+    select course_id, course_description, teacher_id, course_type, organization_id, course_tag,
+    course_is_full, course_number_limit
+    from tb_course
+    WHERE course_is_full = 0
+  </select>
+
   <select id="selectByOrganizationId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select course_id, course_description, teacher_id, course_type, organization_id, course_tags
+    select course_id, course_description, teacher_id, course_type, organization_id, course_tag,
+    course_is_full, course_number_limit
     from tb_course
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select course_id, course_description, teacher_id, course_type, organization_id, course_tags
-    from tb_course
-  </select>
+
 </mapper>

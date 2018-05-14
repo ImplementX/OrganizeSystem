@@ -59,28 +59,18 @@
               <div class="menu_section">
                 <h3>学生菜单</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> 我的课程 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="index_admin.html">我的课程表</a></li>
-                      <li><a href="index2.html">新课程申请</a></li>
+                  <li class="active"><a><i class="fa fa-home"></i> 我的课程 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu" style="display: block;">
+                      <li class="current-page"><a href="index_admin.html">我的课程表</a></li>
+                      <li><a href="index2.html">近期新课程</a></li>
                       <li><a href="index3.html">我的申请</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa fa-sitemap"></i> 我的社团 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="form.html">我的社团</a></li>
-                      <li><a href="form_advanced.html">加入新社团</a></li>
-                      <li><a href="form_validation.html">我的申请</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 成绩与考勤 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">General Form</a></li>
-                      <li><a href="form_advanced.html">Advanced Components</a></li>
-                      <li><a href="form_validation.html">Form Validation</a></li>
-                      <li><a href="form_wizards.html">Form Wizard</a></li>
-                      <li><a href="form_upload.html">Form Upload</a></li>
-                      <li><a href="form_buttons.html">Form Buttons</a></li>
+                      <li><a href="form.html">我的成绩</a></li>
+                      <li><a href="form_advanced.html">我的考勤纪录</a></li>
+                     
                     </ul>
                   </li>
                  
@@ -365,7 +355,8 @@
     <script src="vendors/jszip/dist/jszip.min.js"></script>
     <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
-
+		<!--Vue-->
+		<script type="text/javascript" src="../js/vue/vue.min.js" ></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
 
