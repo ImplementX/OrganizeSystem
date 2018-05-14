@@ -5,7 +5,9 @@
     <id column="organization_id" jdbcType="INTEGER" property="organizationId" />
     <result column="organization_name" jdbcType="VARCHAR" property="organizationName" />
     <result column="organization_description" jdbcType="VARCHAR" property="organizationDescription" />
-    <result column="organization_tags" jdbcType="VARCHAR" property="organizationTags" />
+    <result column="organization_tag" jdbcType="INTEGER" property="organizationTags" />
+    <result column="organization_owner" jdbcType="INTEGER" property="organizationOwner" />
+    <result column="organization_vice_owner" jdbcType="INTEGER" property="organizationViceOwner" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_organization
@@ -13,29 +15,34 @@
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Organization">
     insert into tb_organization (organization_id, organization_name, 
-      organization_description, organization_tags)
+      organization_description, organization_tag, 
+      organization_owner, organization_vice_owner
+      )
     values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, 
-      #{organizationDescription,jdbcType=VARCHAR}, #{organizationTags,jdbcType=VARCHAR})
+      #{organizationDescription,jdbcType=VARCHAR}, #{organizationTags,jdbcType=INTEGER}, 
+      #{organizationOwner,jdbcType=INTEGER}, #{organizationViceOwner,jdbcType=INTEGER}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Organization">
     update tb_organization
     set organization_name = #{organizationName,jdbcType=VARCHAR},
       organization_description = #{organizationDescription,jdbcType=VARCHAR},
-      organization_tags = #{organizationTags,jdbcType=VARCHAR},
+      organization_tag = #{organizationTags,jdbcType=INTEGER},
+      organization_owner = #{organizationOwner,jdbcType=INTEGER},
+      organization_vice_owner = #{organizationViceOwner,jdbcType=INTEGER}
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select organization_id, organization_name, organization_description, organization_tags
+    select organization_id, organization_name, organization_description, organization_tag, 
+    organization_owner, organization_vice_owner
     from tb_organization
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </select>
-  <select id="selectByTags" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select organization_id, organization_name, organization_description, organization_tags
-    from tb_organization
-    where organization_tags like %#{organizationTags,jdbcType=VARCHAR}%
-  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select organization_id, organization_name, organization_description, organization_tags
+    select organization_id, organization_name, organization_description, organization_tag, 
+    organization_owner, organization_vice_owner
     from tb_organization
   </select>
+  
+
 </mapper>

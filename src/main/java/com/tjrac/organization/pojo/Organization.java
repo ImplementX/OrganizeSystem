@@ -7,7 +7,11 @@ public class Organization {
 
     private String organizationDescription;
 
-    private String organizationTags;
+    private Integer organizationTags;
+
+    private Integer organizationOwner;
+
+    private Integer organizationViceOwner;
 
     public Integer getOrganizationId() {
         return organizationId;
@@ -33,21 +37,27 @@ public class Organization {
         this.organizationDescription = organizationDescription == null ? null : organizationDescription.trim();
     }
 
-    public String getOrganizationTags() {
+    public Integer getOrganizationTags() {
         return organizationTags;
     }
 
-    public void setOrganizationTags(String organizationTags) {
+    public void setOrganizationTags(Integer organizationTags) {
         this.organizationTags = organizationTags;
     }
 
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "organizationId=" + organizationId +
-                ", organizationName='" + organizationName + '\'' +
-                ", organizationDescription='" + organizationDescription + '\'' +
-                ", organizationTags='" + organizationTags + '\'' +
-                '}';
+    public Integer getOrganizationOwner() {
+        return organizationOwner;
+    }
+
+    public void setOrganizationOwner(Integer organizationOwner) {
+        this.organizationOwner = organizationOwner;
+    }
+
+    public Integer getOrganizationViceOwner() {
+        return organizationViceOwner;
+    }
+
+    public void setOrganizationViceOwner(Integer organizationViceOwner) {
+        this.organizationViceOwner = organizationViceOwner;
     }
 }
