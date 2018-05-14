@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 	$("#submit_button").bind("click",submit);
+	$("#message").alert("close");
 })
 
 
@@ -16,7 +17,9 @@ function submit(){
 			if(data.page!=undefined){
 				window.location.href = data.page;
 			}else{
-				alert(data.message);
+//				alert(data.message);
+				$("#message").
+				$("#message").alert(data.message);
 			}
 				
 			
