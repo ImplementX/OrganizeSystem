@@ -25,7 +25,6 @@ import java.net.URL;
 
 @RestController
 @RequestMapping( "/user" )
-@SessionAttributes( "user" )
 public class UserController {
     @Autowired
     UserService userService;
