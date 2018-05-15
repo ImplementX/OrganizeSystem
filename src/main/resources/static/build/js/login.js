@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 	$("#submit_button").bind("click",submit);
-	$("#message").alert("close");
+//	$("#message").alert("close");
 })
 
 

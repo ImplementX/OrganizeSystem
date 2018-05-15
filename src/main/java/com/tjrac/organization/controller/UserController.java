@@ -51,22 +51,22 @@ public class UserController {
 //            mv.addObject("message","登录成功！");
             int userType = user.getUserType();
             if ( userType == 1 ) {
-                json.addProperty( "page", "admin" );
-                Admin admin = adminService.getAdminByUserId( userId );
-                session.setAttribute( "userName", admin.getAdminName() );
+                json.addProperty( "page", "admin?user_id="+userId );
+            Admin admin = adminService.getAdminByUserId( userId );
+            session.setAttribute( "userName", admin.getAdminName() );
 
-            } else if ( userType == 2 ) {
-                json.addProperty( "page", "teacher" );
-                Teacher teacher = teacherService.getTeacherByUserId( userId );
-                session.setAttribute( "userName", teacher.getTeacherName() );
-            } else if ( userType == 3 ) {
-                json.addProperty( "page", "student" );
-                Student student = studentService.getStudentByUserId( userId );
-                session.setAttribute( "userName", student.getStudentName() );
-            } else {
-                json.addProperty( "message", "未知用户类型" );
-                json.addProperty( "user", "" );
-            }
+        } else if ( userType == 2 ) {
+            json.addProperty( "page", "teacher?user_id="+userId );
+            Teacher teacher = teacherService.getTeacherByUserId( userId );
+            session.setAttribute( "userName", teacher.getTeacherName() );
+        } else if ( userType == 3 ) {
+            json.addProperty( "page", "student?user_id="+userId );
+            Student student = studentService.getStudentByUserId( userId );
+            session.setAttribute( "userName", student.getStudentName() );
+        } else {
+            json.addProperty( "message", "未知用户类型" );
+            json.addProperty( "user", "" );
+        }
 
 
         } else {
