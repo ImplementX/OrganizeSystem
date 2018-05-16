@@ -5,22 +5,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class PageController {
-    @RequestMapping( "login" )
+    @RequestMapping( "/login" )
     public String login( ) {
         return "login.html";
     }
 
-    @RequestMapping( "admin" )
+    @RequestMapping( "/admin" )
     public String admin( ) {
-        return "/pages/index_admin.html";
+        return "pages/index_admin.html";
     }
 
-    @RequestMapping( "student" )
+    @RequestMapping( "/student" )
     public String student( ) {
         return "pages/index_student.html";
     }
 
-    @RequestMapping( "teacher" )
+    @RequestMapping( "/teacher" )
     public String teacher( ) {
         return "pages/index_teacher.html";
     }

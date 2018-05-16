@@ -1,9 +1,10 @@
+
+
 $(document).ready(function(){
 
 	$("#submit_button").bind("click",submit);
-//	$("#message").alert("close");
+	
 })
-
 
 function submit(){
 	$.ajax({
@@ -15,11 +16,15 @@ function submit(){
 		success:function(data){
 			data = $.parseJSON(data);
 			if(data.page!=undefined){
+//				alert(data.key);
 				window.location.href = data.page;
+				   sessionStorage.setItem('key', data.key);
+				   alert(data.key)
 			}else{
-//				alert(data.message);
-				$("#message").
-				$("#message").alert(data.message);
+				
+//				
+				
+				alert(data.message);
 			}
 				
 			
