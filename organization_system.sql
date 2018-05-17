@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2018-05-16 18:29:37
+Date: 2018-05-17 18:37:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -130,6 +130,22 @@ CREATE TABLE `tb_organization` (
 INSERT INTO `tb_organization` VALUES ('1', '学生跆拳道协会', '浙江大学学生跆拳道协会成立于2000年，是浙江省首个有权颁发跆拳道级别证书的跆拳道组织。协会以“推广跆拳道运动，弘扬跆拳道精神，提高大学生体质,丰富大学生生活”为宗旨，是校级三星级学生社团，协会分设训练部、行政部、宣传部三个部门，历届会员累计近8000人，现有在训会员近100人。历届教练、助教均为国家队、省队队员，全国冠军。协会通过组织会员进行跆拳道技术的训练，和跆拳道知识的讲座，以达到强身健体、磨练意志、完善人格的目的。', '2', null, null);
 INSERT INTO `tb_organization` VALUES ('2', '浙江大学学生三农协会', '', '1', null, null);
 INSERT INTO `tb_organization` VALUES ('3', '浙江大学学生笛箫协会', ' ', '3', null, null);
+
+-- ----------------------------
+-- Table structure for tb_schedule
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_schedule`;
+CREATE TABLE `tb_schedule` (
+  `schedule_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `schedule_date` varchar(30) DEFAULT NULL,
+  `schedule_place` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`schedule_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_schedule
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tb_student

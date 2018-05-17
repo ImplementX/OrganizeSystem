@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjrac.organization.dao.ScheduleMapper">
+  <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Schedule">
+    <id column="schedule_id" jdbcType="INTEGER" property="scheduleId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="schedule_date" jdbcType="VARCHAR" property="scheduleDate" />
+    <result column="schedule_place" jdbcType="VARCHAR" property="schedulePlace" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_schedule
+    where schedule_id = #{scheduleId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tjrac.organization.pojo.Schedule">
+    insert into tb_schedule (schedule_id, course_id, schedule_date, 
+      schedule_place)
+    values (#{scheduleId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{scheduleDate,jdbcType=VARCHAR}, 
+      #{schedulePlace,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Schedule">
+    update tb_schedule
+    set course_id = #{courseId,jdbcType=INTEGER},
+      schedule_date = #{scheduleDate,jdbcType=VARCHAR},
+      schedule_place = #{schedulePlace,jdbcType=VARCHAR}
+    where schedule_id = #{scheduleId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select schedule_id, course_id, schedule_date, schedule_place
+  from tb_schedule
+  where schedule_id = #{scheduleId,jdbcType=INTEGER}
+</select>
+  <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select schedule_id, course_id, schedule_date, schedule_place
+    from tb_schedule
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select schedule_id, course_id, schedule_date, schedule_place
+    from tb_schedule
+  </select>
+</mapper>

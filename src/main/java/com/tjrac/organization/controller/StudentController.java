@@ -1,14 +1,9 @@
 package com.tjrac.organization.controller;
 
 import com.google.gson.Gson;
-import com.tjrac.organization.pojo.Course;
-import com.tjrac.organization.pojo.CourseApplication;
-import com.tjrac.organization.pojo.Student;
-import com.tjrac.organization.pojo.StudentCourse;
-import com.tjrac.organization.service.CourseApplicationService;
-import com.tjrac.organization.service.CourseService;
-import com.tjrac.organization.service.StudentCourseService;
-import com.tjrac.organization.service.StudentService;
+import com.google.gson.JsonObject;
+import com.tjrac.organization.pojo.*;
+import com.tjrac.organization.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -33,7 +28,10 @@ public class StudentController {
     CourseService courseService;
     @Autowired
     CourseApplicationService courseApplicationService;
-
+    @Autowired
+    OrganizationService organizationService;
+    @Autowired
+    TeacherService teacherService;
     @Autowired
     Gson gson;
 
@@ -43,10 +41,19 @@ public class StudentController {
     public String myCourse(@RequestAttribute("userTypeId") Integer studentId ) {
 
         List< StudentCourse > studentCourseList = studentCourseService.listStudentCourseByStudentId( studentId );
-        List< Course > list = new ArrayList<>();
+        List< JsonObject > list = new ArrayList<>();
         for ( StudentCourse studentCourse : studentCourseList ) {
             Course c = courseService.getCourse( studentCourse.getCourseId() );
-            list.add( c );
+            JsonObject obj = new JsonObject();
+            Organization organization = organizationService.getOrganization( c.getOrganizationId() );
+            Teacher teacher = teacherService.getTeacher( c.getTeacherId() );
+            obj.addProperty( "courseName",c.getCourseName() );
+            obj.addProperty( "courseTag",c.getCourseTag() );
+            obj.addProperty( "organizationName", organization.getOrganizationName());
+            obj.addProperty( "teacherName",teacher.getTeacherName() );
+            obj.addProperty( "teacherTel",teacher.getTeacherTel() );
+            obj.addProperty( c.get );
+
         }
 
         return gson.toJson(list);
