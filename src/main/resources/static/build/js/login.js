@@ -19,6 +19,7 @@ function submit(){
 //				alert(data.key);
 				window.location.href = data.page;
 				   sessionStorage.setItem('key', data.key);
+				   sessionStorage.setItem('nickname', data.nickname);
 				   alert(data.key)
 			}else{
 				

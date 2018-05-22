@@ -1,8 +1,9 @@
 key = sessionStorage.getItem('key');
+nickname = sessionStorage.getItem('nickname');
 var vmm = new Vue({
 	el: "#datatable",
 	data: {
-		datas: []
+		datas: [],
 
 	},
 	mounted: function() {
@@ -19,12 +20,42 @@ var vmm = new Vue({
 				beforeSend: function(request) {
 					request.setRequestHeader("JWTKey", key);
 				},
-				success: function(data) {
-					console.log(data);
-					vmm.datas = $.parseJSON(data);
-
+				success: function(datajson) {
+					console.log(datajson);
+					vmm.datas = $.parseJSON(datajson);
+					$('#datatable').DataTable( {
+				    data : $.parseJSON(datajson),
+				    destroy:true,
+				    columns: [  { data: 'courseName' ,render: function(data, type, row) { return '<a  href="javascript:;" onclick="getCourseDetails(' +row.courseId+  ')"> '+data+'</a>'; }},
+				         { data: 'tagName' },
+				        { data: 'organizationName' },
+				        { data: 'teacherName' },
+				        { data: 'teacherTel' },
+				        { data: 'teacherTel' },
+				        {data: 'courseId',render: function(data, type, row) {return '<a  href="javascript:;" onclick="deleteCourse(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 申请退课</a>'; } }
+				        ]
+				} );
 				}
 			})
 		}
 	}
 });
+
+function deleteCourse(id){
+	$.ajax({
+				type: 'Get',
+				url: "student-api/apply-remove-course?courseId="+id,
+				// data:{type:type,ext:ext},
+				datatype: "json",
+				beforeSend: function(request) {
+					request.setRequestHeader("JWTKey", key);
+				},
+				success: function(data) {
+					console.log(data);
+					data = $.parseJSON(data);
+					$("#message").text(data.message);
+					$('#modal').modal({
+					});
+				}
+			})
+}

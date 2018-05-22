@@ -13,10 +13,10 @@
     where course_application_id = #{courseApplicationId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.CourseApplication">
-    insert into tb_course_application (course_application_id, course_id, student_id, 
+    insert into tb_course_application (course_application_id, course_id, student_id,
       course_application_result, course_application_type
       )
-    values (#{courseApplicationId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, 
+    values (#{courseApplicationId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
       #{courseApplicationResult,jdbcType=INTEGER}, #{courseApplicationType,jdbcType=INTEGER}
       )
   </insert>

@@ -43,7 +43,7 @@ public class UserController {
     public String login( String username, String password, HttpSession session ) {
         User user = userService.isUser( username, password );
         JsonObject json = new JsonObject();
-
+        String nickname = "";
         if ( user != null ) {
             json.addProperty( "user", gson.toJson( user ) );
             int userId = user.getUserId();
@@ -53,20 +53,26 @@ public class UserController {
             switch ( userType ){
                 case 1:
                     json.addProperty( "page", "admin");
-                    userTypeId = adminService.getAdminByUserId( userId ).getAdminId();
+                    Admin admin = adminService.getAdminByUserId( userId );
+                    userTypeId =admin.getAdminId();
+                    nickname = admin.getAdminName();
                     break;
                 case 2:
                     json.addProperty( "page", "teacher" );
-                    userTypeId = teacherService.getTeacherByUserId( userId ).getTeacherId();
+                    Teacher teacher = teacherService.getTeacherByUserId( userId );
+                    userTypeId = teacher.getTeacherId();
+                    nickname = teacher.getTeacherName();
                     break;
                 case 3: json.addProperty( "page", "student");
-                    userTypeId = studentService.getStudentByUserId( userId ).getStudentId();
+                    Student student = studentService.getStudentByUserId( userId );
+                    userTypeId = student.getStudentId();
+                    nickname = student.getStudentName();
                 break;
                 default: json.addProperty( "message", "未知用户类型" );
 
                 break;
             }
-
+            json.addProperty( "nickname",nickname );
             json.addProperty( "key",JwtHelper.createJWT( userId,username,userType ,userTypeId) );
         } else {
 
