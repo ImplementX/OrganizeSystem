@@ -9,6 +9,8 @@ public interface CourseService {
 
     List<Course> listCourseByOrganizationId(int organizationId);
 
+    List<Course> listCourseByTeacherId(int teacherId);
+
     boolean saveCourse(Course course);
 
     boolean removeCourse(int courseId);

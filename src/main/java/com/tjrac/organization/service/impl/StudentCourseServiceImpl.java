@@ -38,6 +38,11 @@ public class StudentCourseServiceImpl implements StudentCourseService {
         return studentCourseMapper.updateByPrimaryKey(thisStudentCourse)>0?true:false;
     }
 
+    @Override
+    public StudentCourse getByStudentIdAndCourseId( int studentId, int courseId ) {
+        return studentCourseMapper.selectByStudentIdAndCourseId( studentId, courseId);
+    }
+
     public List<StudentCourse> listAll() {
         return studentCourseMapper.selectAll();
     }

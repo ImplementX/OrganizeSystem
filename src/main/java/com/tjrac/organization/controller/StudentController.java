@@ -38,6 +38,8 @@ public class StudentController {
     @Autowired
     GradeService gradeService;
     @Autowired
+    AttendanceService attendanceService;
+    @Autowired
     Gson gson;
 
     private static final Logger LOGGER= LoggerFactory.getLogger(StudentController.class);
@@ -85,6 +87,7 @@ public class StudentController {
         }
         List< CourseApplication > courseApplications =  courseApplicationService.listByStudentId(  studentId );
         for ( CourseApplication ca : courseApplications ) {
+            if ( ca.getCourseApplicationResult() == 0 )
             removeSet.add( ca.getCourseId() );
         }
 
@@ -108,6 +111,7 @@ public class StudentController {
                obj.addProperty( "teacherId",c.getTeacherId() );
                obj.addProperty( "teacherName",teacher.getTeacherName() );
                obj.addProperty( "teacherTel",teacher.getTeacherTel() );
+               obj.addProperty( "time",c.getCourseType());
                list.add( obj );
 
            }
@@ -209,10 +213,13 @@ public class StudentController {
     @ResponseBody
     public String cancelApplication(int applicationId) {
         JsonObject jsonObject = new JsonObject();
-        System.out.println(applicationId+"-------------------------------------------------------------------" );
+        CourseApplication courseApplication = courseApplicationService.getCourseApplication( applicationId );
         if ( courseApplicationService.removeCourseApplication( applicationId ) )
         {
+            if( courseApplication.getCourseApplicationResult() == 0 )
             jsonObject.addProperty( "message", "申请已取消" );
+            else
+                jsonObject.addProperty( "message", "记录已删除" );
         }
         else {
             jsonObject.addProperty( "message", "取消失败！" );
@@ -246,6 +253,28 @@ public class StudentController {
             list.add( jsonObject );
 
         }
+        return gson.toJson( list );
+    }
+
+    @RequestMapping("/get-my-attendance")
+    @ResponseBody
+    public String myAttendance(@RequestAttribute("userTypeId")int studentId){
+        List< Attendance > attendances = attendanceService.listByStudentId( studentId );
+        List<JsonObject> list  = new ArrayList<>(  );
+
+        for ( Attendance attendance : attendances ) {
+            Course course = courseService.getCourse( attendance.getCourseId( ) );
+            Schedule schedule = scheduleService.getSchedule( attendance.getScheduleId( ) );
+            JsonObject jsonObject = new JsonObject();
+            Teacher teacher = teacherService.getTeacher( course.getTeacherId() );
+            jsonObject.addProperty( "courseName", course.getCourseName() );
+            jsonObject.addProperty( "teacherName", teacher.getTeacherName() );
+            jsonObject.addProperty( "teacherTel", teacher.getTeacherTel() );
+            jsonObject.addProperty( "scheduleDate", schedule.getScheduleDate() );
+            jsonObject.addProperty( "schedulePlace", schedule.getSchedulePlace() );
+            list.add( jsonObject );
+        }
+
         return gson.toJson( list );
     }
 

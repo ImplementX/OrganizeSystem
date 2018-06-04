@@ -14,12 +14,12 @@
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Organization">
-    insert into tb_organization (organization_id, organization_name, 
-      organization_description, organization_tag, 
+    insert into tb_organization (organization_id, organization_name,
+      organization_description, organization_tag,
       organization_owner, organization_vice_owner
       )
-    values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, 
-      #{organizationDescription,jdbcType=VARCHAR}, #{organizationTags,jdbcType=INTEGER}, 
+    values (#{organizationId,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR},
+      #{organizationDescription,jdbcType=VARCHAR}, #{organizationTags,jdbcType=INTEGER},
       #{organizationOwner,jdbcType=INTEGER}, #{organizationViceOwner,jdbcType=INTEGER}
       )
   </insert>
@@ -33,16 +33,16 @@
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select organization_id, organization_name, organization_description, organization_tag, 
+    select organization_id, organization_name, organization_description, organization_tag,
     organization_owner, organization_vice_owner
     from tb_organization
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select organization_id, organization_name, organization_description, organization_tag, 
+    select organization_id, organization_name, organization_description, organization_tag,
     organization_owner, organization_vice_owner
     from tb_organization
   </select>
-  
+
 
 </mapper>

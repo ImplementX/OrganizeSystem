@@ -33,7 +33,13 @@ function initTable(){
 				        { data: 'teacherTel' },
 				        { data: 'type' },
 				        { data: 'result' },
-				        {data: 'applicationId',render: function(data, type, row) {return '<a  href="javascript:;" onclick="removeApplication(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消申请</a>'; } }
+				        {data: 'applicationId',render: function(data, type, row) {
+				        	if(row.applicationResult == 0)
+				        		return '<a class="btn btn-danger btn-sm"  href="javascript:;" onclick="removeApplication(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 取消申请</a>';
+				        	else
+				        		return '<a class="btn btn-danger btn-sm"  href="javascript:;" onclick="removeApplication(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 删除记录</a>';
+				        		
+				        } }
 				        ]
 				} );
 				}

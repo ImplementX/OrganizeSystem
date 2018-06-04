@@ -7,7 +7,7 @@ public class Schedule {
 
     private String scheduleDate;
 
-    private String schedulePlace;
+        private String schedulePlace;
 
     public Integer getScheduleId() {
         return scheduleId;

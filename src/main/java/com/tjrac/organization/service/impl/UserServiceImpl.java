@@ -15,13 +15,21 @@ public class UserServiceImpl implements UserService {
 
     public User isUser(String username, String password)  {
          User user = userMapper.selectByUserName(username);
+         if(user==null){
+             return null;
+         }
         if(EncryptionUtil.EncoderByMd5(password).equals(user.getUserPwd()) ){
             return user;
         }
         return null;
     }
 
-    public User getUser(String username){
+    @Override
+    public User getUser( int userId ) {
+        return userMapper.selectByPrimaryKey(  userId);
+    }
+
+    public User getUserByUserName( String username){
         return userMapper.selectByUserName(username);
     }
 

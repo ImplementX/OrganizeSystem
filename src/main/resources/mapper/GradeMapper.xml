@@ -12,7 +12,7 @@
     where grade_id = #{gradeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Grade">
-    insert into tb_grade (grade_id, course_id, student_id, 
+    insert into tb_grade (grade_id, course_id, student_id,
       grade_number)
     values (#{gradeId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
       #{gradeNumber,jdbcType=INTEGER})
@@ -38,6 +38,10 @@
     select grade_id, course_id, student_id, grade_number
     from tb_grade
     where course_id = #{courseId,jdbcType=INTEGER}
+  </select><select id="selectByCourseIdAndStudentId"  resultMap="BaseResultMap">
+    select grade_id, course_id, student_id, grade_number
+    from tb_grade
+    where course_id = #{courseId,jdbcType=INTEGER} AND student_id = #{studentId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select grade_id, course_id, student_id, grade_number

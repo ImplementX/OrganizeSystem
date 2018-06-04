@@ -16,7 +16,12 @@ public class GradeServiceImpl implements GradeService {
         return gradeMapper.selectByPrimaryKey(gradeId);
     }
 
-    public List<Grade> listGradeByCourseId(int courseId) {
+    @Override
+    public Grade getGradeByCourseIdAndStudentId( int courseId, int studentId ) {
+        return gradeMapper.selectByCourseIdAndStudentId(  courseId,studentId);
+    }
+
+    public List<Grade> listGradeByCourseId( int courseId) {
         return gradeMapper.selectByCourseId(courseId);
     }
 

@@ -18,10 +18,10 @@
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Course">
     insert into tb_course (course_id, course_name, course_description, teacher_id,
-      course_type, organization_id, course_tag, 
+      course_type, organization_id, course_tag,
       course_is_full, course_number_limit)
     values (#{courseId,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{courseDescription,jdbcType=VARCHAR}, #{teacherId,jdbcType=INTEGER},
-      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, #{courseTag,jdbcType=INTEGER}, 
+      #{courseType,jdbcType=VARCHAR}, #{organizationId,jdbcType=INTEGER}, #{courseTag,jdbcType=INTEGER},
       #{courseIsFull,jdbcType=INTEGER}, #{courseNumberLimit,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Course">
@@ -59,6 +59,11 @@
     course_is_full, course_number_limit
     from tb_course
     where organization_id = #{organizationId,jdbcType=INTEGER}
+  </select><select id="selectByTeacherId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select course_id, course_name, course_description, teacher_id, course_type, organization_id, course_tag,
+    course_is_full, course_number_limit
+    from tb_course
+    where teacher_id = #{teacherId,jdbcType=INTEGER}
   </select>
 
 </mapper>

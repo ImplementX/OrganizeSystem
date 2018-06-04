@@ -37,6 +37,12 @@
     from tb_student_course
     where course_id = #{courseId,jdbcType=INTEGER}
   </select>
+  <select id="selectByStudentIdAndCourseId"  resultMap="BaseResultMap">
+    select student_course_id, student_id, course_id
+    from tb_student_course
+    where   student_id = #{studentId,jdbcType=INTEGER} AND course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select student_course_id, student_id, course_id
     from tb_student_course

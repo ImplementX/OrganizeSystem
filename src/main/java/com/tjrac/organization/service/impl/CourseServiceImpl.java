@@ -20,7 +20,12 @@ public class CourseServiceImpl implements CourseService{
         return courseMapper.selectByOrganizationId(organizationId);
     }
 
-    public boolean saveCourse(Course course) {
+    @Override
+    public List< Course > listCourseByTeacherId( int teacherId ) {
+        return courseMapper.selectByTeacherId( teacherId );
+    }
+
+    public boolean saveCourse( Course course) {
         return courseMapper.insert(course)>0?true:false;
     }
 

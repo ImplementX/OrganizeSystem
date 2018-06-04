@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjrac.organization.dao.AttendanceMapper">
+  <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Attendance">
+    <id column="attendance_id" jdbcType="INTEGER" property="attendanceId" />
+    <result column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="schedule_id" jdbcType="INTEGER" property="scheduleId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_attendance
+    where attendance_id = #{attendanceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tjrac.organization.pojo.Attendance">
+    insert into tb_attendance (attendance_id, student_id, course_id,
+      schedule_id)
+    values (#{attendanceId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER}, #{courseId,jdbcType=INTEGER},
+      #{scheduleId,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.tjrac.organization.pojo.Attendance">
+    update tb_attendance
+    set student_id = #{studentId,jdbcType=INTEGER},
+      course_id = #{courseId,jdbcType=INTEGER},
+      schedule_id = #{scheduleId,jdbcType=VARCHAR}
+    where attendance_id = #{attendanceId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select attendance_id, student_id, course_id, schedule_id
+    from tb_attendance
+    where attendance_id = #{attendanceId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select attendance_id, student_id, course_id, schedule_id
+    from tb_attendance
+    where course_id = #{courseId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByStudentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select attendance_id, student_id, course_id, schedule_id
+    from tb_attendance
+    where student_id = #{studentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select attendance_id, student_id, course_id, schedule_id
+    from tb_attendance
+  </select>
+</mapper>

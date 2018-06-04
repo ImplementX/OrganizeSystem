@@ -32,7 +32,7 @@ var vmm = new Vue({
 				        { data: 'teacherName' },
 				        { data: 'teacherTel' },
 				        { data: 'teacherTel' },
-				        {data: 'courseId',render: function(data, type, row) {return '<a  href="javascript:;" onclick="deleteCourse(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 申请退课</a>'; } }
+				        {data: 'courseId',render: function(data, type, row) {return '<a class="btn  btn-danger btn-sm" href="javascript:;" onclick="deleteCourse(' +data+  ')"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 申请退课</a>'; } }
 				        ]
 				} );
 				}

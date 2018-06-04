@@ -7,6 +7,8 @@ import java.util.List;
 public interface GradeService {
     Grade getGrade(int gradeId);
 
+    Grade getGradeByCourseIdAndStudentId( int courseId, int studentId);
+
     List<Grade> listGradeByCourseId(int courseId);
 
     List<Grade> listGradeByStudentId(int studentId);

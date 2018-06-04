@@ -17,12 +17,13 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("get -----key " +key);
         Map< String, Object > map = JwtHelper.parseJWT( key );
         if ( key!=null ){
+            System.out.println( map.toString());
             Integer userId = ( Integer ) map.get( "user_id" );
             Integer userType = ( Integer ) map.get( "user_type" );
             Integer userTypeId = ( Integer ) map.get( "user_type_id" );
             System.out.println(userId+" "+userTypeId);
             request.setAttribute( "userTypeId" ,userTypeId);
-            request.setAttribute( "userId",userId);
+            request.setAttribute( "myUserId",userId);
             String path = request.getContextPath();
             if ( userType==3 ){
                 if ( path.contains( "teacher-api" )|| path.contains( "admin-api" )){

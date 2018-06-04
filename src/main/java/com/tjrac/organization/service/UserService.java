@@ -10,7 +10,9 @@ import java.util.List;
 public interface UserService {
     User isUser(String username, String password);
 
-    User getUser(String username);
+    User getUser(int  userId);
+
+    User getUserByUserName( String username);
 
     boolean saveUser(User newUser);
 

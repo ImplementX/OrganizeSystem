@@ -11,6 +11,8 @@ public class Admin {
 
     private String adminAge;
 
+    private String adminMail;
+
     private String adminWechat;
 
     private String adminQq;
@@ -57,6 +59,14 @@ public class Admin {
         this.adminAge = adminAge == null ? null : adminAge.trim();
     }
 
+    public String getAdminMail( ) {
+        return adminMail;
+    }
+
+    public void setAdminMail( String adminMail ) {
+        this.adminMail = adminMail;
+    }
+
     public String getAdminWechat() {
         return adminWechat;
     }
@@ -82,13 +92,14 @@ public class Admin {
     }
 
     @Override
-    public String toString() {
+    public String toString( ) {
         return "Admin{" +
                 "adminId=" + adminId +
                 ", adminName='" + adminName + '\'' +
                 ", adminGender='" + adminGender + '\'' +
                 ", adminTel='" + adminTel + '\'' +
                 ", adminAge='" + adminAge + '\'' +
+                ", adminMail='" + adminMail + '\'' +
                 ", adminWechat='" + adminWechat + '\'' +
                 ", adminQq='" + adminQq + '\'' +
                 ", userId=" + userId +

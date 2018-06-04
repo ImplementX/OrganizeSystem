@@ -3,11 +3,12 @@
 <mapper namespace="com.tjrac.organization.dao.TeacherMapper">
   <resultMap id="BaseResultMap" type="com.tjrac.organization.pojo.Teacher">
     <id column="teacher_id" jdbcType="INTEGER" property="teacherId" />
-    <result column="teacher_number" jdbcType="INTEGER" property="teacherNumber" />
+    <result column="teacher_number" jdbcType="VARCHAR" property="teacherNumber" />
     <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
     <result column="teacher_gender" jdbcType="VARCHAR" property="teacherGender" />
     <result column="teacher_age" jdbcType="VARCHAR" property="teacherAge" />
     <result column="teacher_tel" jdbcType="VARCHAR" property="teacherTel" />
+    <result column="teacher_mail" jdbcType="VARCHAR" property="teacherMail" />
     <result column="teacher_qq" jdbcType="VARCHAR" property="teacherQq" />
     <result column="teacher_wechat" jdbcType="VARCHAR" property="teacherWechat" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
@@ -18,11 +19,11 @@
   </delete>
   <insert id="insert" parameterType="com.tjrac.organization.pojo.Teacher">
     insert into tb_teacher (teacher_id, teacher_number, teacher_name,
-      teacher_gender, teacher_age, teacher_tel,
+      teacher_gender, teacher_age, teacher_tel, teacher_mail,
       teacher_qq, teacher_wechat, user_id
       )
     values (#{teacherId,jdbcType=INTEGER}, #{teacherNumber,jdbcType=INTEGER}, #{teacherName,jdbcType=VARCHAR},
-      #{teacherGender,jdbcType=VARCHAR}, #{teacherAge,jdbcType=VARCHAR}, #{teacherTel,jdbcType=VARCHAR},
+      #{teacherGender,jdbcType=VARCHAR}, #{teacherAge,jdbcType=VARCHAR}, #{teacherTel,jdbcType=VARCHAR}, #{teacherMail,jdbcType=VARCHAR},
       #{teacherQq,jdbcType=VARCHAR}, #{teacherWechat,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}
       )
   </insert>
@@ -33,25 +34,26 @@
       teacher_gender = #{teacherGender,jdbcType=VARCHAR},
       teacher_age = #{teacherAge,jdbcType=VARCHAR},
       teacher_tel = #{teacherTel,jdbcType=VARCHAR},
+      teacher_mail = #{teacherMail,jdbcType=VARCHAR},
       teacher_qq = #{teacherQq,jdbcType=VARCHAR},
       teacher_wechat = #{teacherWechat,jdbcType=VARCHAR},
       user_id = #{userId,jdbcType=INTEGER}
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,teacher_mail,
     teacher_qq, teacher_wechat, user_id
     from tb_teacher
     where teacher_id = #{teacherId,jdbcType=INTEGER}
   </select>
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,teacher_mail,
     teacher_qq, teacher_wechat, user_id
     from tb_teacher
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,
+    select teacher_id, teacher_number, teacher_name, teacher_gender, teacher_age, teacher_tel,teacher_mail,
     teacher_qq, teacher_wechat, user_id
     from tb_teacher
   </select>

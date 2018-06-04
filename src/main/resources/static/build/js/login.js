@@ -1,4 +1,4 @@
-
+sessionStorage.setItem('key', '');
 
 $(document).ready(function(){
 
@@ -20,12 +20,14 @@ function submit(){
 				window.location.href = data.page;
 				   sessionStorage.setItem('key', data.key);
 				   sessionStorage.setItem('nickname', data.nickname);
-				   alert(data.key)
+//				   alert(data.key)
 			}else{
-				
+				$("#message").text(data.message);
+					$('#modal').modal({
+					});
 //				
 				
-				alert(data.message);
+//				alert(data.message);
 			}
 				
 			

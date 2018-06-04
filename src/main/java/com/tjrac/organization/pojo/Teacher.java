@@ -3,7 +3,7 @@ package com.tjrac.organization.pojo;
 public class Teacher {
     private Integer teacherId;
 
-    private Integer teacherNumber;
+    private String teacherNumber;
 
     private String teacherName;
 
@@ -12,6 +12,8 @@ public class Teacher {
     private String teacherAge;
 
     private String teacherTel;
+
+    private String teacherMail;
 
     private String teacherQq;
 
@@ -27,11 +29,11 @@ public class Teacher {
         this.teacherId = teacherId;
     }
 
-    public Integer getTeacherNumber() {
+    public String getTeacherNumber() {
         return teacherNumber;
     }
 
-    public void setTeacherNumber(Integer teacherNumber) {
+    public void setTeacherNumber(String teacherNumber) {
         this.teacherNumber = teacherNumber;
     }
 
@@ -67,6 +69,14 @@ public class Teacher {
         this.teacherTel = teacherTel == null ? null : teacherTel.trim();
     }
 
+    public String getTeacherMail( ) {
+        return teacherMail;
+    }
+
+    public void setTeacherMail( String teacherMail ) {
+        this.teacherMail = teacherMail;
+    }
+
     public String getTeacherQq() {
         return teacherQq;
     }
@@ -92,7 +102,7 @@ public class Teacher {
     }
 
     @Override
-    public String toString() {
+    public String toString( ) {
         return "Teacher{" +
                 "teacherId=" + teacherId +
                 ", teacherNumber=" + teacherNumber +
@@ -100,6 +110,7 @@ public class Teacher {
                 ", teacherGender='" + teacherGender + '\'' +
                 ", teacherAge='" + teacherAge + '\'' +
                 ", teacherTel='" + teacherTel + '\'' +
+                ", teacherMail='" + teacherMail + '\'' +
                 ", teacherQq='" + teacherQq + '\'' +
                 ", teacherWechat='" + teacherWechat + '\'' +
                 ", userId=" + userId +

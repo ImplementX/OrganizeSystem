@@ -21,5 +21,7 @@ public interface CourseMapper {
 
     List<Course> selectByOrganizationId(Integer organizationId);
 
+    List<Course> selectByTeacherId(Integer teacherId);
+
     List<Course> selectIsNotFull();
 }

@@ -1,9 +1,9 @@
 package com.tjrac.organization.pojo;
 
 public class Student {
-    private Integer studentId;
+        private Integer studentId;
 
-    private Integer studentNumber;
+    private String studentNumber;
 
     private String studentName;
 
@@ -12,6 +12,8 @@ public class Student {
     private String studentTel;
 
     private String studentAge;
+
+    private String studentMail;
 
     private String studentQq;
 
@@ -31,11 +33,11 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public Integer getStudentNumber() {
+    public String getStudentNumber() {
         return studentNumber;
     }
 
-    public void setStudentNumber(Integer studentNumber) {
+    public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
     }
 
@@ -69,6 +71,14 @@ public class Student {
 
     public void setStudentAge(String studentAge) {
         this.studentAge = studentAge == null ? null : studentAge.trim();
+    }
+
+    public String getStudentMail( ) {
+        return studentMail;
+    }
+
+    public void setStudentMail( String studentMail ) {
+        this.studentMail = studentMail;
     }
 
     public String getStudentQq() {
@@ -112,7 +122,7 @@ public class Student {
     }
 
     @Override
-    public String toString() {
+    public String toString( ) {
         return "Student{" +
                 "studentId=" + studentId +
                 ", studentNumber=" + studentNumber +
@@ -120,6 +130,7 @@ public class Student {
                 ", studentGender='" + studentGender + '\'' +
                 ", studentTel='" + studentTel + '\'' +
                 ", studentAge='" + studentAge + '\'' +
+                ", studentMail='" + studentMail + '\'' +
                 ", studentQq='" + studentQq + '\'' +
                 ", studentWechat='" + studentWechat + '\'' +
                 ", studentMajor='" + studentMajor + '\'' +

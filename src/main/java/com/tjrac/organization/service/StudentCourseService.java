@@ -13,6 +13,8 @@ public interface StudentCourseService {
 
     boolean saveStudentCourse(StudentCourse newStudentCourse);
 
+    StudentCourse getByStudentIdAndCourseId(int studentId,int courseId);
+
     boolean removeStudentCourse(int studentCourseId);
 
     boolean updateStudentCourse(StudentCourse thisStudentCourse);
